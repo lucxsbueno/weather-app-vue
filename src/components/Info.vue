@@ -31,9 +31,9 @@ export default {
     font-weight: 300;
 }
 
-.info-area .date{ }
+/* .info-area .date{ }
 
-.info-area .desc{ }
+.info-area .desc{ } */
 
 .info-area img{
     margin-bottom: 10px;
