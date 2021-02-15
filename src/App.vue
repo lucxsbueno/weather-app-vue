@@ -3,6 +3,7 @@
     <Header/>
     <Info/>
     <Search/>
+    <WeekWeather/>
   </div>
 </template>
 
@@ -12,13 +13,15 @@
   import Header from './components/Header.vue';
   import Info from './components/Info.vue';
   import Search from './components/Search.vue';
+  import WeekWeather from './components/WeekWeather.vue';
 
   export default {
     name: 'App',
     components: {
       Header,
       Info,
-      Search
+      Search,
+      WeekWeather
     }
   }
 </script>

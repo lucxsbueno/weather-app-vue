@@ -31,13 +31,19 @@ export default {
 
 .search form input[type=text]{
     border-radius: 4px;
-    background-color: rgb(170, 170, 170, 64%);
-    border: 3px solid #616161;
+    background-color: rgb(205, 205, 205, 16%);
+    border: 3px solid rgb(205, 205, 205, 1%);
     font-size: 16px;
     padding: 8px 10px;
     color: #FFFFFF;
     margin-right: 15px;
     width: 100%;
+    transition: 0.3s all;
+}
+
+.search form input[type=text]:focus{
+    border: 3px solid #B0B0B0;
+    transition: 0.3s all;
 }
 
 .search form input[type=text]::placeholder{
