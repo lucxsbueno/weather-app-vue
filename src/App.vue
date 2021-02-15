@@ -2,6 +2,7 @@
   <div id="app">
     <Header/>
     <Info/>
+    <Search/>
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 
   import Header from './components/Header.vue';
   import Info from './components/Info.vue';
+  import Search from './components/Search.vue';
 
   export default {
     name: 'App',
     components: {
       Header,
-      Info
+      Info,
+      Search
     }
   }
 </script>
