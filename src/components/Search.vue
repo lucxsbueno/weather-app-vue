@@ -1,12 +1,18 @@
 <template>
-    <section class="container search">
+    <section class="container search" v-bind:class="[toggle ? active : disabled]">
         <div class="row">
             <form action="" method="POST">
                 <label for="search"></label>
-                <input type="text" name="search" id="inputSearch"
-                    placeholder="Pesquise o clima de outra cidade.">
-                <input type="submit" value="PESQUISAR">
-                <button class="material-icons">close</button>
+                <input
+                    type="text"
+                    name="search"
+                    id="inputSearch"
+                    placeholder="Pesquise o clima de outra cidade."
+                    autocomplete="off"
+                    v-model="search"
+                    >
+                <input type="submit" value="PESQUISAR" v-on:click.prevent="handleSearch">
+                <!--<button class="material-icons" v-on:click.prevent="handleToggle(toggle)">close</button>-->
             </form>
         </div>
     </section>
@@ -14,11 +20,37 @@
 
 <script>
 export default {
-    name: 'Search'
+    name: 'Search',
+    data(){
+        return{
+            search: '',
+            active: 'active',
+            disabled: 'disabled'
+        }
+    },
+    methods: {
+        handleSearch(){ 
+            alert(this.search)
+        },
+        handleToggle(){
+            return this.toggle = !this.toggle 
+        }
+    },
+    props: {
+        toggle: Boolean
+    }
 }
 </script>
 
 <style scoped>
+.active{
+    display: flex;
+}
+
+.disabled{
+    display: none;
+}
+
 .search{
     background-color: #4A4A4A;
 }
@@ -54,11 +86,11 @@ export default {
     background-color: #EC6E4C;
     border: 3px solid #EC6E4C;
     border-radius: 4px;
+    /* margin-right: 15px; */
     font-size: 16px;
     color: #FFFFFF;
     padding: 8px 15px;
     font-weight: 500;
-    margin-right: 15px;
     cursor: pointer;
 }
 

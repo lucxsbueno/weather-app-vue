@@ -4,7 +4,7 @@
             <a href="#">
                 <h1>Weather<p>VueApp</p></h1>
             </a>
-            <a href="#">Pesquisar</a>
+            <a href="">Pesquisar</a>
         </div>
     </header>    
 </template>
