@@ -1,25 +1,13 @@
 <template>
     <section class="container weather-days">
         <div class="row">
-            <h3>Previsão para os próximos três dias</h3>
+            <h3>Previsão para os próximos {{ list.length }} dias</h3>
             <div class="grid">
-                <article class="box">
-                    <span class="day-of-week">Segunda-feira</span>
-                    <span class="description">chuva passageira</span>
-                    <span class="weather">22ºC</span>
-                    <img src="../assets/02d@2x.svg" alt="">
-                </article>
-                <article class="box">
-                    <span class="day-of-week">Terça-feira</span>
-                    <span class="description">chuva passageira</span>
-                    <span class="weather">20ºC</span>
-                    <img src="../assets/02d@2x.svg" alt="">
-                </article>
-                <article class="box">
-                    <span class="day-of-week">Quarta-feira</span>
-                    <span class="description">chuva passageira</span>
-                    <span class="weather">18ºC</span>
-                    <img src="../assets/02d@2x.svg" alt="">
+                <article class="box" v-for="(item, index) in list" :key="index">
+                    <span class="day-of-week">{{ item.dt | convert() }}</span>
+                    <span class="description">{{ item.weather[0].description }}</span>
+                    <span class="weather">{{ item.main.temp | toInt() }}</span>
+                    <img :src="`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`" alt="">
                 </article>
             </div>
         </div>
@@ -28,14 +16,28 @@
 
 <script>
 export default {
-    name: 'WeekWeather'
+    name: 'WeekWeather',
+    props: {
+        list: Array
+    },
+    filters: {
+        convert: function(value){
+            var d = new Date(value * 1000);
+            var options = { weekday: 'long'};
+            var now = d.toLocaleDateString('pt-BR', options);
+            var nowToUppercase = now[0].toUpperCase() + now.substring(1);
+            return nowToUppercase;
+        },
+        toInt: function(value){
+            return parseInt(value)+"ºC";
+        }
+    }
 }
 </script>
 
 <style scoped>
 /* Weather info */
-
-/* .weather-days { } */
+.weather-days {  }
 
 .weather-days h3{
     padding: 20px 0px;
@@ -59,7 +61,6 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    border-right: 1px solid #E9E9E9;
 }
 
 .weather-days .grid > .box:nth-last-child(1){
@@ -69,5 +70,9 @@ export default {
 .weather-days .grid .box .day-of-week{
     font-weight: 500;
     font-size: 18px;
+}
+
+.box img{
+    width: 80px;
 }
 </style>

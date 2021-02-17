@@ -29,10 +29,12 @@ export default {
         }
     },
     methods: {
-        handleSearch(){ 
-            alert(this.search)
+        handleSearch: function(){
+            this.$emit("searchApi", {
+                args: this.search
+            });
         },
-        handleToggle(){
+        handleToggle: function(){
             return this.toggle = !this.toggle 
         }
     },
